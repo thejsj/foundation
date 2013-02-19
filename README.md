@@ -1,5 +1,5 @@
-/* Foundation WordPress Theme
---------------------------------------------------------------- */
+Foundation WordPress Theme
+
 
 	-------------------
 	Description:
