@@ -1,0 +1,29 @@
+/*-----------------------------------------------------------------------------  
+
+	Theme Name: Foundation Theme
+	Theme URI: N/A
+	Description: This is a free resource to help streamline the development of custom WordPress themes.
+	Author: Scarbrough Studios
+	Author URI: http://scarbroughstudios.com
+	Version: 1.0			
+	
+----------------------------------------------------------------------------- */
+
+
+/* GLOBAL ELEMENT STYLES
+----------------------------------------------------------------------------- */
+h1, h2, h3, h4, h5, h6 { margin: 0; }
+img { display: block; }
+a, a:visited { color: #2125d4; }
+a:hover { color: #696dee; }
+
+/* GLOBAL CLASS STYLES
+----------------------------------------------------------------------------- */
+
+/* MEDIA QUERIES
+----------------------------------------------------------------------------- */
+@media screen and (max-device-width: 480px) {}
+
+@media all and (orientation: portrait) {}
+
+@media all and (orientation: landscape) {}
