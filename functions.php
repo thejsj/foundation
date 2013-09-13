@@ -5,13 +5,22 @@
 	
 	// Load theme styles
 	function load_theme_styles() {
-		// Load LESS stylesheet -- uncomment if using LESS compiler or WP-LESS plugin
-		wp_register_style('less-styles', get_template_directory_uri()  . '/less/main.less', array(), null);
-		wp_enqueue_style('less-styles');
+		// Download the WP LESS plugin and uncomment this if you want to use LESS
+		// wp_register_style('less-styles', get_template_directory_uri()  . '/less/main.less', array(), null);
+		// wp_enqueue_style('less-styles');
 
-		// Load main stylesheet (Use if not using LESS)
-		// wp_register_style('theme-style', get_stylesheet_uri());
-		// wp_enqueue_style('theme-style');		
+		// Load traditional styles -- Comment each of these out if you choose to use LESS
+		wp_register_style('normalize', get_template_directory_uri()  . '/css/normalize.css', array(), null);
+		wp_enqueue_style('normalize');
+		
+		wp_register_style('boilerplate', get_template_directory_uri()  . '/css/boilerplate.css', array(), null);
+		wp_enqueue_style('boilerplate');
+		
+		wp_register_style('theme-style', get_stylesheet_uri());
+		wp_enqueue_style('theme-style');
+		
+		wp_register_style('helper-classes', get_template_directory_uri()  . '/css/helper-classes.css', array(), null);
+		wp_enqueue_style('helper-classes');
 	}
 	add_action( 'wp_enqueue_scripts', 'load_theme_styles' );
 	
