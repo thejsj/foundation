@@ -5,15 +5,13 @@
 	
 	// Load theme styles
 	function load_theme_styles() {
-		// Load Bootstrap stylesheet
-		wp_register_style('bootstrap', get_template_directory_uri()  . '/css/bootstrap.css', array(), null);
-		wp_enqueue_style('bootstrap');
-		// Load Bootstrap stylesheet
-		wp_register_style('bootstrap-responsive', get_template_directory_uri()  . '/css/bootstrap-responsive.css', array(), null);
-		wp_enqueue_style('bootstrap-responsive');	
-		// Load main stylesheet
-		wp_register_style('theme-style', get_stylesheet_uri());
-		wp_enqueue_style('theme-style');		
+		// Load LESS stylesheet -- uncomment if using LESS compiler or WP-LESS plugin
+		wp_register_style('less-styles', get_template_directory_uri()  . '/less/main.less', array(), null);
+		wp_enqueue_style('less-styles');
+
+		// Load main stylesheet (Use if not using LESS)
+		// wp_register_style('theme-style', get_stylesheet_uri());
+		// wp_enqueue_style('theme-style');		
 	}
 	add_action( 'wp_enqueue_scripts', 'load_theme_styles' );
 	
@@ -26,11 +24,8 @@
 	// Load theme scripts
 	function load_theme_scripts() {
 		// Load Modernizr
-		wp_register_script('modernizer', get_template_directory_uri()  . '/js/_libs/modernizr-2.6.2.min.js', array(), '20130217', false);
-		wp_enqueue_script('modernizer');		
-		// Load Bootstrap js
-		wp_register_script('bootstrap', get_template_directory_uri()  . '/js/_libs/bootstrap.min.js', array(), '20130217', true);
-		wp_enqueue_script('bootstrap');
+		wp_register_script('modernizer', get_template_directory_uri()  . '/js/libs/modernizr-2.6.2.min.js', array(), '20130217', false);
+		wp_enqueue_script('modernizer');
 		// Load js plugins
 		wp_register_script('plugins', get_template_directory_uri()  . '/js/plugins.js', array(), '20130217', true);
 		wp_enqueue_script('plugins');
@@ -54,7 +49,7 @@
 			if (!is_admin()) {
 				function theme_enqueue_jquery() {
 					wp_deregister_script('jquery');
-					wp_register_script('jquery',  "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js", array(), null, true);
+					wp_register_script('jquery',  "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js", array(), null, true);
 					wp_enqueue_script('jquery');
 				}
 			add_action('wp_enqueue_scripts', 'theme_enqueue_jquery');
@@ -62,36 +57,36 @@
 		}
 		core_mods();
 	}
-	
+
 	// Clean up the <head>
 	function removeHeadLinks() {
-  	remove_action('wp_head', 'rsd_link');
-  	remove_action('wp_head', 'wlwmanifest_link');
-  }
-  add_action('init', 'removeHeadLinks');
-  remove_action('wp_head', 'wp_generator');
-   
-  // Register sidebars if applicable
-  if (function_exists('register_sidebar')) {
-  	register_sidebar(array(
-  		'name' => __('Sidebar Widgets','html5reset' ),
-  		'id'   => 'sidebar-widgets',
-  		'description'   => __( 'These are widgets for the sidebar.','html5reset' ),
-  		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-  		'after_widget'  => '</div>',
-  		'before_title'  => '<h2>',
-  		'after_title'   => '</h2>'
-  	));
-  }
-  
+		remove_action('wp_head', 'rsd_link');
+		remove_action('wp_head', 'wlwmanifest_link');
+	}
+	add_action('init', 'removeHeadLinks');
+	remove_action('wp_head', 'wp_generator');
+
+	// Register sidebars if applicable
+	if (function_exists('register_sidebar')) {
+		register_sidebar(array(
+			'name' => __('Sidebar Widgets','html5reset' ),
+			'id'   => 'sidebar-widgets',
+			'description'   => __( 'These are widgets for the sidebar.','html5reset' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h2>',
+			'after_title'   => '</h2>'
+		));
+	}
+
 	// Translations can be filed in the /languages/ directory
 	load_theme_textdomain( 'html5reset', TEMPLATEPATH . '/languages' );
-	
+
 	$locale = get_locale();
 	$locale_file = TEMPLATEPATH . "/languages/$locale.php";
 	if ( is_readable($locale_file) )
 	    require_once($locale_file);  
-	
+
 	// Clean up the title and meta title tags in the head
 	function custom_title( $title, $sep ) {
 		global $paged, $page;
@@ -122,10 +117,10 @@
 	);
 	  if( $wp_rewrite->using_permalinks() )
 	  	$pagination['base'] = user_trailingslashit( trailingslashit( remove_query_arg( 's', get_pagenum_link( 1 ) ) ) . 'page/%#%/', 'paged' );
-	
+
 	  if( !empty($wp_query->query_vars['s']) )
 	  	$pagination['add_args'] = array( 's' => get_query_var( 's' ) );
-	
+
 	  echo paginate_links( $pagination );
 	}
 
@@ -134,7 +129,7 @@
 		$GLOBALS['comment'] = $comment; 
 		include('comments-template.php');
 	}	
-	
+
 	// Copyright formula
 	function copyright($first_year) {
 		$this_year = date('Y');

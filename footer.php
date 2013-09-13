@@ -2,11 +2,14 @@
 <footer id="footer">
 	<div class="container">
 		<div class="copyright">
-			<p>&copy; <?php echo copyright(2012); ?> <?php bloginfo('name'); ?>. All rights reserved.</p>
+			<p>&copy; <?php echo copyright(2013); ?> <?php bloginfo('name'); ?>. All rights reserved.</p>
 		</div>
 	</div>
 </footer>
 <!-- FOOTER ENDS -->
+
+</div><!-- END .page -->
+
 <?php wp_footer(); ?>
 <!-- DON'T FORGET ANALYTICS -->
 <!--
