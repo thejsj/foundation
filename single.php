@@ -1,8 +1,6 @@
 <?php get_header(); ?>	
-
 <section class="container">	
-
-	<!-- POST CONTENT BEGINS -->
+	<!-- Post Content Begins -->
 	<?php if(have_posts()) : ?>
 		<?php while(have_posts()) : ?>
 			<?php the_post(); ?> 
@@ -19,9 +17,6 @@
 		</nav>				
 	<?php endif;?>
 	<?php comments_template(); ?>
-	<!-- POST CONTENT ENDS -->
-
+	<!-- Post Content Ends-->
 </section>
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

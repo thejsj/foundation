@@ -1,9 +1,7 @@
 <?php get_header(); ?>	
-<!-- PAGE WRAP BEGINS -->
+<!-- Page Wrap Begins -->
 <section class="container">	
-
-	<!-- POST LIST BEGINS -->
-	<h1>BLOG</h1>
+	<!-- Post List Begins -->
 	<?php if(have_posts()) : ?>
 		<?php while(have_posts()) : ?>
 			<?php the_post(); ?> 						
@@ -19,9 +17,6 @@
 		<h2>Sorry!</h2>
 		<p>No posts have been published just yet.</p>	
 	<?php endif;?>
-	<!-- POST LIST ENDS -->
-
+	<!-- Post List Ends -->
 </section>
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

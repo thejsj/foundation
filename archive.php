@@ -1,10 +1,8 @@
 <?php get_header(); ?>	
-<!-- PAGE WRAP BEGINS -->
+<!-- Page Wrap Begins -->
 <section class="container">	
-
-	<h1>ARCHIVE</h1>
+	<!-- Archive Page -->
 	<?php if(have_posts()) : ?>
-		<?php $post = $posts[0]; ?>
 		<?php if(is_category()) { ?>
 			<h2>Archive for the &#8216;<?php single_cat_title(); ?>&#8217; Category</h2>
 		<?php } elseif( is_tag() ) { ?>
@@ -20,8 +18,7 @@
 		<?php } elseif (isset($_GET['paged']) && !empty($_GET['paged'])) { ?>
 			<h2 class="pagetitle">Blog Archives</h2>
 		<?php } ?>									
-		
-		<!-- POST LIST BEGINS -->
+		<!-- Post List Begins -->
 		<?php while(have_posts()) : ?>
 			<?php the_post(); ?> 						
 			<article class="content list-content">
@@ -29,8 +26,7 @@
 				<?php the_excerpt(); ?>
 			</article>
 		<?php endwhile; ?>
-		<!-- POST LIST ENDS -->
-		
+		<!-- Post List Ends -->
 		<nav class="post-list-nav">
 			<?php pagination('&lsaquo; Newer Posts', 'Older Posts &rsaquo;'); ?>
 		</nav>
@@ -38,8 +34,5 @@
 		<h2>Sorry!</h2>
 		<p>No posts have been published just yet.</p>	
 	<?php endif;?>
-
 </section>
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

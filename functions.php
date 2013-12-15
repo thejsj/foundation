@@ -1,26 +1,13 @@
 <?php
 
-/* CUSTOM FUNCTIONS
+/* Custom Styles and Scripts
 ---------------------------------------------------------------------- */
 	
 	// Load theme styles
 	function load_theme_styles() {
-		// Download the WP LESS plugin and uncomment this if you want to use LESS
-		// wp_register_style('less-styles', get_template_directory_uri()  . '/less/main.less', array(), null);
-		// wp_enqueue_style('less-styles');
-
 		// Load traditional styles -- Comment each of these out if you choose to use LESS
-		wp_register_style('normalize', get_template_directory_uri()  . '/css/normalize.css', array(), null);
-		wp_enqueue_style('normalize');
-		
-		wp_register_style('boilerplate', get_template_directory_uri()  . '/css/boilerplate.css', array(), null);
-		wp_enqueue_style('boilerplate');
-		
-		wp_register_style('theme-style', get_stylesheet_uri());
-		wp_enqueue_style('theme-style');
-		
-		wp_register_style('helper-classes', get_template_directory_uri()  . '/css/helper-classes.css', array(), null);
-		wp_enqueue_style('helper-classes');
+		wp_register_style('main', get_template_directory_uri()  . '/css/main.css', array(), null);
+		wp_enqueue_style('main');
 	}
 	add_action( 'wp_enqueue_scripts', 'load_theme_styles' );
 	
@@ -32,15 +19,12 @@
 	
 	// Load theme scripts
 	function load_theme_scripts() {
-		// Load Modernizr
-		wp_register_script('modernizer', get_template_directory_uri()  . '/js/libs/modernizr-2.6.2.min.js', array(), '20130217', false);
-		wp_enqueue_script('modernizer');
-		// Load js plugins
-		wp_register_script('plugins', get_template_directory_uri()  . '/js/plugins.js', array('jquery'), '20130217', true);
-		wp_enqueue_script('plugins');
-		// Load js functions
-		wp_register_script('functions', get_template_directory_uri()  . '/js/functions.js', array('jquery'), '20130217', true);
-		wp_enqueue_script('functions');						
+		// Load Header Script (Codekit Compiled File)
+		wp_register_script('header', get_template_directory_uri()  . '/js/header-ck.js', array(), '20130217', false);
+		wp_enqueue_script('header');
+		// Load Footer Script (Codekit Compiled File)
+		wp_register_script('footer', get_template_directory_uri()  . '/js/footer-ck.js', array(), '20130217', false);
+		wp_enqueue_script('footer');			
 	}
 	add_action( 'wp_enqueue_scripts', 'load_theme_scripts' );
 		
@@ -49,23 +33,8 @@
 	/* add_image_size( 'handle', width, height, crop ); view params at: http://codex.wordpress.org/Function_Reference/add_image_size */
 	
 	
-/* BOILERPLATE FUNCTIONS - *DO NOT EDIT*
+/* Boilerplate Functions (Do Not Edit)
 ---------------------------------------------------------------------- */
-
-	// Load latest version of jQuery *and avoid duplicate loading of library
-	if (!function_exists('core_mods')) {
-		function core_mods() {
-			if (!is_admin()) {
-				function theme_enqueue_jquery() {
-					wp_deregister_script('jquery');
-					wp_register_script('jquery',  "http" . ($_SERVER['SERVER_PORT'] == 443 ? "s" : "") . "://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js", array(), null, true);
-					wp_enqueue_script('jquery');
-				}
-			add_action('wp_enqueue_scripts', 'theme_enqueue_jquery');
-			}
-		}
-		core_mods();
-	}
 
 	// Clean up the <head>
 	function removeHeadLinks() {
@@ -74,27 +43,6 @@
 	}
 	add_action('init', 'removeHeadLinks');
 	remove_action('wp_head', 'wp_generator');
-
-	// Register sidebars if applicable
-	if (function_exists('register_sidebar')) {
-		register_sidebar(array(
-			'name' => __('Sidebar Widgets','html5reset' ),
-			'id'   => 'sidebar-widgets',
-			'description'   => __( 'These are widgets for the sidebar.','html5reset' ),
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h2>',
-			'after_title'   => '</h2>'
-		));
-	}
-
-	// Translations can be filed in the /languages/ directory
-	load_theme_textdomain( 'html5reset', TEMPLATEPATH . '/languages' );
-
-	$locale = get_locale();
-	$locale_file = TEMPLATEPATH . "/languages/$locale.php";
-	if ( is_readable($locale_file) )
-	    require_once($locale_file);  
 
 	// Clean up the title and meta title tags in the head
 	function custom_title( $title, $sep ) {
@@ -133,12 +81,6 @@
 	  echo paginate_links( $pagination );
 	}
 
-	// Enqueue custom comments layout
-	function custom_comments($comment, $args, $depth) {
-		$GLOBALS['comment'] = $comment; 
-		include('comments-template.php');
-	}	
-
 	// Copyright formula
 	function copyright($first_year) {
 		$this_year = date('Y');
@@ -149,7 +91,12 @@
 		}
 	}
 
-	// Add 3.1 post format theme support.
+/* Theme Functions
+---------------------------------------------------------------------- */
+	
+	// Register Menu
+	register_nav_menu( 'primary', 'Primary Menu' );
+
 	add_theme_support( 'post-formats', array('aside', 'gallery', 'link', 'image', 'quote', 'status', 'audio', 'chat', 'video'));
 
 	// Add RSS links to <head> section
