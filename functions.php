@@ -20,10 +20,10 @@
 	// Load theme scripts
 	function load_theme_scripts() {
 		// Load Header Script (Codekit Compiled File)
-		wp_register_script('header', get_template_directory_uri()  . '/js/header-ck.js', array(), '20130217', false);
+		wp_register_script('header', get_template_directory_uri()  . '/js/header.js', array(), '20130217', false);
 		wp_enqueue_script('header');
 		// Load Footer Script (Codekit Compiled File)
-		wp_register_script('footer', get_template_directory_uri()  . '/js/footer-ck.js', array(), '20130217', false);
+		wp_register_script('footer', get_template_directory_uri()  . '/js/footer.js', array(), '20130217', false);
 		wp_enqueue_script('footer');			
 	}
 	add_action( 'wp_enqueue_scripts', 'load_theme_scripts' );
