@@ -5,7 +5,7 @@
 $(document).ready(function (){
 
 // Enter js functions here
-
+	console.log("hello World");
 });
 
 /* 

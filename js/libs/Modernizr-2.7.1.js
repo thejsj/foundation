@@ -753,7 +753,7 @@ window.Modernizr = (function( window, document, undefined ) {
 
                 'type': 'default',
 
-                'shivDocument': shivDocument,\
+                'shivDocument': shivDocument,
 
                 createElement: createElement,
 

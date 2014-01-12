@@ -6,16 +6,16 @@ module.exports = function(grunt) {
 		uglify: {
 			my_target: {
 				files: {
-					'static/js/header.js': ['static/js/libs/Modernizr-2.7.1.js'],
-					'static/js/footer.js': ['static/js/libs/jquery-1.10.2.js', 'static/js/app/app.js'],
+					'js/header.js': ['js/libs/Modernizr-2.7.1.js'],
+					'js/footer.js': ['js/libs/jquery-1.10.2.js', 'js/libs/bootstrap/bootstrap.js','js/app/app.js'],
 				}
 			}
 		},
 		compass: {
 			dist: {
 				options: {
-					sassDir: 'static/sass',
-					cssDir: 'static/css',
+					sassDir: 'scss',
+					cssDir: 'css',
 				}
 			}
 		},
