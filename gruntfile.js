@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 			my_target: {
 				files: {
 					'js/header.js': ['js/libs/Modernizr-2.7.1.js'],
-					'js/footer.js': ['js/libs/jquery-1.10.2.js', 'js/libs/bootstrap/bootstrap.js','js/app/app.js'],
+					'js/footer.js': ['js/libs/jquery-1.10.2.js', 'js/app/app.js'],
 				}
 			}
 		},

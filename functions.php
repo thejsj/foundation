@@ -105,11 +105,4 @@
 	// This theme styles the visual editor with editor-style.css to match the theme style.
 	add_editor_style();	
 
-
-/* Dependencies
----------------------------------------------------------------------- */
-
-// Register Custom Navigation Walker
-require_once('classes/wp_bootstrap_navwalker.php');
-
 ?>
